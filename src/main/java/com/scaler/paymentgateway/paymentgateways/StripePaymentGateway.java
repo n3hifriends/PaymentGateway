@@ -33,6 +33,11 @@ public class StripePaymentGateway implements IPaymentGateway {
                                             .setQuantity(1L)
                                             .build()
                             )
+                            .setAfterCompletion(
+                                    PaymentLinkCreateParams.AfterCompletion.builder().setType(
+                                                    PaymentLinkCreateParams.AfterCompletion.Type.REDIRECT)
+                                            .setRedirect(PaymentLinkCreateParams.AfterCompletion.Redirect.builder()
+                                                    .setUrl("https://scaler.com").build()).build())
                             .build();
             PaymentLink paymentLink = PaymentLink.create(params);
             return paymentLink.getUrl();
