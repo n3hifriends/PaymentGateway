@@ -24,7 +24,7 @@ public class StripePaymentGateway implements IPaymentGateway {
     @Override
     public String createStandardPaymentLink(Long amount, String orderId, String phoneNumber, String name, String email) {
         try {
-            Stripe.apiKey = this.stripeKey;
+            Stripe.apiKey = stripeKey;
             PaymentLinkCreateParams params =
                     PaymentLinkCreateParams.builder()
                             .addLineItem(
