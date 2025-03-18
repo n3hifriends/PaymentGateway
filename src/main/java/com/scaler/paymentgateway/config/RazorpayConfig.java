@@ -16,7 +16,11 @@ public class RazorpayConfig {
     private String razorpayApiSecret;
 
     @Bean
-    public RazorpayClient razorpayClient() throws RazorpayException {
-        return new RazorpayClient(razorpayApiKey, razorpayApiSecret);
+    public RazorpayClient razorpayClient() {
+        try {
+            return new RazorpayClient(razorpayApiKey, razorpayApiSecret);
+        } catch (RazorpayException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }
